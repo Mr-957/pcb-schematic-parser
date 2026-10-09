@@ -1,0 +1,36 @@
+# Official GPU stack: retain installed compatible CUDA builds.
+# (versions the platform reported as already satisfied in build 4516)
+torch==2.5.1
+torchvision==0.20.1
+numpy==2.5.3
+
+# New dependencies, pinned to the exact set the platform itself resolved in build 4516
+# (it finished resolution and then died downloading the first wheel from
+#  files.pythonhosted.org).  Combined with --no-index + --find-links these pins make the
+# image build a pure function of the shipped wheelhouse: no resolver freedom, no network.
+# Full provenance (url/sha256/size) in pcbmodel/integrate/submission_wheels/MANIFEST.json.
+anyio==4.15.1
+cloudpickle==3.1.2
+contourpy==1.4.0
+cycler==0.12.1
+fonttools==4.66.1
+h11==0.16.0
+httpcore==1.0.9
+httpx==0.28.1
+imageio==2.38.1
+kiwisolver==1.5.1
+lazy-loader==0.6
+matplotlib==3.11.2
+nvidia-ml-py==13.615.71
+opencv-python==5.0.0.93
+polars==2.0.0
+polars-runtime-32==2.0.0
+pyparsing==3.3.3
+python-dateutil==2.9.0.post0
+scikit-image==0.26.0
+scipy==1.18.1
+six==1.17.0
+tifffile==2026.9.20
+ultralytics==8.4.146
+ultralytics-platform==0.1.83
+ultralytics-thop==2.2.2

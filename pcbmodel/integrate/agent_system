@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# EDARace 交付入口（容器内 /submission/agent_system）—— 只做转发，参数解析在 deliver.py。
+# 契约照抄官方基础镜像：/submission/agent_system -input /input -output /output
+set -euo pipefail
+exec python3 -m pcbmodel.integrate.deliver "$@"

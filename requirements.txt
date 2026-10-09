@@ -1,0 +1,8 @@
+# Python 3.12; install the CPU/CUDA torch build first (see README).
+torch==2.5.1
+torchvision==0.20.1
+ultralytics==8.4.146
+scikit-image==0.26.0
+numpy==2.5.3
+scipy==1.18.1
+Pillow==12.3.0

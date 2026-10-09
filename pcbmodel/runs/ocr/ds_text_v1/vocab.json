@@ -1,0 +1,21 @@
+{
+ "vocab": {
+  "designator": 0,
+  "name": 1,
+  "netlabel": 2,
+  "pinName": 3,
+  "pinNumber": 4,
+  "text_other": 5,
+  "value": 6
+ },
+ "counts": {
+  "name": 703,
+  "text_other": 14043,
+  "designator": 2675,
+  "value": 2218,
+  "pinNumber": 5868,
+  "pinName": 5183,
+  "netlabel": 3866
+ },
+ "val_types_not_in_vocab": []
+}

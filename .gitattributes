@@ -1,0 +1,4 @@
+* text=auto eol=lf
+*.json -text
+*.pt binary
+pcbmodel/integrate/agent_system text eol=lf

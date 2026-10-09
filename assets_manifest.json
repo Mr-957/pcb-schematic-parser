@@ -1,0 +1,34 @@
+{
+  "10gt/10gt/BoxICLibrary_200cases.json": {
+    "bytes": 1826150,
+    "sha256": "d5e0b346eb87311823d60d0543a0a7a0d6fd9141e5d302ea012d1543a456229f"
+  },
+  "pcbmodel/integrate/ic_pin_db.json": {
+    "bytes": 297544,
+    "sha256": "7d1713095c9f0a4e769de182cf8171df0e9da720547be9342d6d1efe4ef272b0"
+  },
+  "pcbmodel/runs/detect/ds_v2/vocab.json": {
+    "bytes": 1390,
+    "sha256": "bcc1c7008cd0270455a22d33eef0c75ea9a70ed0aaa72612b92aa0acb014e612"
+  },
+  "pcbmodel/runs/detect/train/text_v1/weights/best.pt": {
+    "bytes": 40685420,
+    "sha256": "1426a25b04802440789cf6d954bbe240eba01fb4f526e063f07e8a2960f6a147"
+  },
+  "pcbmodel/runs/detect/train/yolo11m_v2/weights/best.pt": {
+    "bytes": 40738284,
+    "sha256": "c27d207a1558a51a936b748be17c5158133301f009952c2e32257984148a9352"
+  },
+  "pcbmodel/runs/ocr/ds_text_v1/vocab.json": {
+    "bytes": 317,
+    "sha256": "d0d2e4414050760866547afeb4595d25176c9bfb97172e7899265c9fb3268283"
+  },
+  "pcbmodel/runs/ocr/recog_v1_anno1694_seed6_500ep/best.pt": {
+    "bytes": 40730201,
+    "sha256": "1c929585967a4cf7fd8d054690522244a7df04409dddb0188f5af6e33b8f7359"
+  },
+  "pcbmodel/runs/seg/unet_v1/best.pt": {
+    "bytes": 31452103,
+    "sha256": "7994157d18c7382872823a0a9ccb6019d21c4fac79f2112fa3fc63ef17d862db"
+  }
+}

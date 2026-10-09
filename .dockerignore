@@ -1,0 +1,77 @@
+# 构建上下文必须**瘦**（仓库 4.2GB，进镜像的只有 ~150MB）。
+# 排除：官方基础镜像本体 / 数据集 / 训练产物 / 文档 / 版本控制
+
+# ⚠ 官方基础镜像的 OCI layout —— 2.5GB，绝对不进上下文
+edarace-agent-base_ubuntu24/
+
+# ⚠ 仓库根的 submission_wheels/（248MB，26 个 wheel）**必须进上下文**：
+#   Dockerfile 用 `COPY submission_wheels/ /submission/submission_wheels/` 做离线安装。
+#   这里没有排除它的规则 —— 若将来新增通配排除，记得留出这一条。
+#   （放在仓库根而不是 pcbmodel/ 下，是因为 `COPY pcbmodel/` 会把整棵树再拷一份进镜像。）
+
+# 数据集（训练用，推理用不到）
+Dataset300/
+赛题六公开数据集/
+prep/
+
+# 10gt：**评测图与 GT 不进上下文**，只放行 box 引脚链必需的官方 IC 库（Codex 审核 R1）。
+# 库的绝对路径写在 pin_from_name.LIB_PATH，容器里由 PCB_IC_LIB 指到 /submission/10gt/...。
+10gt/*
+!10gt/10gt/
+10gt/10gt/*
+!10gt/10gt/BoxICLibrary_200cases.json
+
+# 训练产物：只保留 Dockerfile 里显式 COPY 的那 4 个权重 + 2 个词表
+# ⚠ 2026-10-08 订正：这里原先放行的是 `recog_v1_train_baseline/best.pt`，而 Dockerfile 的 COPY
+#   目标是 `recog_v1_anno1694_seed6_500ep/best.pt`（OCR 换权重后没同步本文件）
+#   ⇒ 被 ignore 掉的路径 `COPY` 会直接**构建失败**。基线 OCR 以 predict_ocr.RECOG_DEFAULT 为准。
+pcbmodel/runs/ocr/*
+!pcbmodel/runs/ocr/recog_v1_anno1694_seed6_500ep/
+!pcbmodel/runs/ocr/ds_text_v1/
+pcbmodel/runs/ocr/recog_v1_anno1694_seed6_500ep/*
+!pcbmodel/runs/ocr/recog_v1_anno1694_seed6_500ep/best.pt
+pcbmodel/runs/ocr/ds_text_v1/*
+!pcbmodel/runs/ocr/ds_text_v1/vocab.json
+
+pcbmodel/runs/detect/*
+!pcbmodel/runs/detect/train/
+!pcbmodel/runs/detect/ds_v2/
+pcbmodel/runs/detect/train/*
+!pcbmodel/runs/detect/train/yolo11m_v2/
+!pcbmodel/runs/detect/train/text_v1/
+pcbmodel/runs/detect/train/yolo11m_v2/*
+!pcbmodel/runs/detect/train/yolo11m_v2/weights/
+pcbmodel/runs/detect/train/yolo11m_v2/weights/*
+!pcbmodel/runs/detect/train/yolo11m_v2/weights/best.pt
+pcbmodel/runs/detect/train/text_v1/*
+!pcbmodel/runs/detect/train/text_v1/weights/
+pcbmodel/runs/detect/train/text_v1/weights/*
+!pcbmodel/runs/detect/train/text_v1/weights/best.pt
+pcbmodel/runs/detect/ds_v2/*
+!pcbmodel/runs/detect/ds_v2/vocab.json
+
+pcbmodel/runs/seg/*
+!pcbmodel/runs/seg/unet_v1/
+pcbmodel/runs/seg/unet_v1/*
+!pcbmodel/runs/seg/unet_v1/best.pt
+
+# 其余产物与文档
+pcbmodel/runs/stage0*/
+pcbmodel/runs/stage05/
+pcbmodel/runs/wire/
+pcbmodel/runs/*.md
+pcbmodel/runs/submission_val29/
+docs/
+weights/
+runs/
+**/__pycache__/
+**/*.pyc
+.git/
+.gitignore
+tools/
+
+# 测试可以进（很小），但 notebooks/临时文件不行
+**/*.ipynb
+*.log
+*.tar
+*.tar.gz
